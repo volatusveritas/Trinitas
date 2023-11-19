@@ -23,3 +23,7 @@ GameData="*res://scripts/game_data.gd"
 [display]
 
 window/size/viewport_width=648
+
+[gui]
+
+theme/custom="res://assets/resources/main_theme.tres"
