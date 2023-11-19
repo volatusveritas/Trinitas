@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://l8xl7poavffv"]
+
+[ext_resource type="FontFile" uid="uid://bjfgurrhupfx" path="res://assets/fonts/space_mono/regular.ttf" id="1_rxpcb"]
+
+[resource]
+default_font = ExtResource("1_rxpcb")
+default_font_size = 16
