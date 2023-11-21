@@ -5,10 +5,15 @@ extends Control
 @onready var TableItems: Control = $TableItems
 
 func _ready() -> void:
-    NewItemSelector.item_requested.connect(ItemStage.set_target_item)
-    ItemStage.item_confirmed.connect(place_item)
+    NewItemSelector.item_requested.connect(ItemStage.set_target)
+    ItemStage.item_confirmed.connect(func(path: String, pos: Vector2) -> void:
+        self.place_item.rpc(path, pos)
+    )
 
-func place_item(item: Control) -> void:
-    TableItems.add_child(item)
-    item.modulate.a = 1.0
-    Controls.center_on_mouse(item)
+@rpc("any_peer", "call_local", "reliable")
+func place_item(path: String, pos: Vector2) -> void:
+    var scene := load(path)
+    var node: Control = scene.instantiate()
+
+    TableItems.add_child(node)
+    node.global_position = pos
