@@ -2,11 +2,12 @@ class_name MouseHub
 extends Control
 
 func _ready() -> void:
+    multiplayer.peer_disconnected.connect(remove_mouse)
+
     if multiplayer.is_server():
         multiplayer.peer_connected.connect(share_mouse_list)
         return
 
-    multiplayer.peer_disconnected.connect(remove_mouse)
     new_mouse.rpc(get_local_mouse_position())
 
 func _physics_process(_delta: float) -> void:
