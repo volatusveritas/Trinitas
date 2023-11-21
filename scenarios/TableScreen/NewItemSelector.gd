@@ -13,8 +13,9 @@ func _ready() -> void:
         preload("res://scenes/table_items/RoachKillerCard.tscn")
     )
 
-func toggle() -> void:
-    visible = not visible
+func _input(_event: InputEvent) -> void:
+    if Input.is_action_just_pressed("add_item"):
+        visible = not visible
 
 func add_item(item_name: String, scene: PackedScene) -> void:
     var item_button := Button.new()
