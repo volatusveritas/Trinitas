@@ -1,4 +1,5 @@
 # Autoloaded: Controls
+class_name Controls
 extends Node
 
 static func center_on_mouse(obj: Control) -> void:
