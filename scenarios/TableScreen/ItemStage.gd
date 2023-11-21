@@ -24,7 +24,9 @@ func _input(event: InputEvent) -> void:
 
 func set_target_item(scene: PackedScene) -> void:
     var new_item: Control = scene.instantiate()
-    new_item.modulate.a = NEW_ITEM_OPACITY
 
     add_child(new_item)
+
+    new_item.modulate.a = NEW_ITEM_OPACITY
+
     target_item = new_item

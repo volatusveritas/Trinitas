@@ -19,7 +19,8 @@ func _input(_event: InputEvent) -> void:
 
 func add_item(item_name: String, scene: PackedScene) -> void:
     var item_button := Button.new()
-    item_button.text = item_name
-    item_button.pressed.connect(func(): item_requested.emit(scene))
 
     ItemButtons.add_child(item_button)
+
+    item_button.text = item_name
+    item_button.pressed.connect(func(): item_requested.emit(scene))
