@@ -6,9 +6,9 @@ func _ready() -> void:
         multiplayer.peer_connected.connect(share_mouse_list)
         return
 
+    multiplayer.peer_disconnected.connect(remove_mouse)
     new_mouse.rpc(get_local_mouse_position())
 
-func _physics_process(delta: float) -> void:
 func _physics_process(_delta: float) -> void:
     update_mouse.rpc(get_local_mouse_position())
 
@@ -45,3 +45,9 @@ func update_mouse(new_pos: Vector2) -> void:
     var id := multiplayer.get_remote_sender_id()
     var player_mouse := get_node(str(id)) as PlayerMouse
     player_mouse.position = new_pos
+
+func remove_mouse(id: int) -> void:
+    var mouse := get_node(str(id))
+
+    remove_child(mouse)
+    mouse.queue_free()
