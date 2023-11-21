@@ -23,12 +23,6 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.215686, 0.215686, 0.215686, 1)
 
-[node name="MouseHub" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("2_xrvjm")
-
 [node name="TableItems" type="Control" parent="."]
 anchors_preset = 0
 offset_right = 40.0
@@ -39,6 +33,12 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("3_qu43g")
+
+[node name="MouseHub" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_xrvjm")
 
 [node name="NewItemSelector" type="Control" parent="."]
 visible = false
