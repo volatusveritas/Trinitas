@@ -16,9 +16,9 @@ func _ready() -> void:
 func toggle() -> void:
     visible = not visible
 
-func add_item(name: String, scene: PackedScene) -> void:
+func add_item(item_name: String, scene: PackedScene) -> void:
     var item_button := Button.new()
-    item_button.text = name
+    item_button.text = item_name
     item_button.pressed.connect(func(): item_requested.emit(scene))
 
     ItemButtons.add_child(item_button)
