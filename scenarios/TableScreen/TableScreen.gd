@@ -16,4 +16,3 @@ func place_item(item: Control) -> void:
     TableItems.add_child(item)
     item.modulate.a = 1.0
     Controls.center_on_mouse(item)
-
