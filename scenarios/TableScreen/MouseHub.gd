@@ -9,6 +9,7 @@ func _ready() -> void:
     new_mouse.rpc(get_local_mouse_position())
 
 func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
     update_mouse.rpc(get_local_mouse_position())
 
 func share_mouse_list(id: int) -> void:

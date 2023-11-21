@@ -19,7 +19,7 @@ func _ready() -> void:
         get_tree().change_scene_to_packed(GameData.SCENE_TABLE)
     )
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
     verify_ip_field()
 
 func verify_ip_field() -> void:
