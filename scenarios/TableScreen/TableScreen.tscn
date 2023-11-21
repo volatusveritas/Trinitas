@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://c2mtkd1wdlf0c"]
+[gd_scene load_steps=5 format=3 uid="uid://c2mtkd1wdlf0c"]
 
 [ext_resource type="Script" path="res://scenarios/TableScreen/TableScreen.gd" id="1_oohwr"]
 [ext_resource type="Script" path="res://scenarios/TableScreen/MouseHub.gd" id="2_xrvjm"]
+[ext_resource type="Script" path="res://scenarios/TableScreen/NewItemSelector.gd" id="3_2p4jk"]
+[ext_resource type="Script" path="res://scenarios/TableScreen/ItemStage.gd" id="3_qu43g"]
 
 [node name="TableScreen" type="Control"]
 layout_mode = 3
@@ -26,3 +28,64 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("2_xrvjm")
+
+[node name="TableItems" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ItemStage" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_qu43g")
+
+[node name="NewItemSelector" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_2p4jk")
+
+[node name="Background" type="ColorRect" parent="NewItemSelector"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.364706)
+
+[node name="Elements" type="VBoxContainer" parent="NewItemSelector"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.05
+anchor_right = 1.0
+anchor_bottom = 0.95
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="NewItemSelector/Elements"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "New Item"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="NewItemSelector/Elements"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="ItemButtons" type="VBoxContainer" parent="NewItemSelector/Elements/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Button" type="Button" parent="NewItemSelector/Elements/ScrollContainer/ItemButtons"]
+visible = false
+layout_mode = 2
+text = "Example Item"
