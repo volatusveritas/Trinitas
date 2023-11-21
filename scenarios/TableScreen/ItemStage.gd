@@ -1,12 +1,12 @@
 class_name ItemStage
 extends Control
 
-signal item_confirmed(path: String, pos: Vector2)
+signal item_confirmed(path: String, syncinfo: Dictionary)
 
 const PLACEHOLDER_OPACITY := 0.8
 
 var target_path := ""
-var placeholder_item: Control = null
+var placeholder_item: TableItem = null
 
 func _physics_process(_delta: float) -> void:
     if placeholder_item == null:
@@ -19,13 +19,13 @@ func _input(event: InputEvent) -> void:
         return
 
     if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-        var pos := placeholder_item.global_position
+        var syncinfo := placeholder_item._get_syncinfo()
 
         remove_child(placeholder_item)
         placeholder_item.queue_free()
         placeholder_item = null
 
-        item_confirmed.emit(target_path, pos)
+        item_confirmed.emit(target_path, syncinfo)
 
 func create_placeholder() -> void:
     var scene := load(target_path)

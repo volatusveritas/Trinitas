@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://c2mtkd1wdlf0c"]
+[gd_scene load_steps=6 format=3 uid="uid://c2mtkd1wdlf0c"]
 
 [ext_resource type="Script" path="res://scenarios/TableScreen/TableScreen.gd" id="1_oohwr"]
+[ext_resource type="Script" path="res://scenarios/TableScreen/TableItems.gd" id="2_ugci6"]
 [ext_resource type="Script" path="res://scenarios/TableScreen/MouseHub.gd" id="2_xrvjm"]
 [ext_resource type="Script" path="res://scenarios/TableScreen/NewItemSelector.gd" id="3_2p4jk"]
 [ext_resource type="Script" path="res://scenarios/TableScreen/ItemStage.gd" id="3_qu43g"]
@@ -27,6 +28,7 @@ color = Color(0.215686, 0.215686, 0.215686, 1)
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("2_ugci6")
 
 [node name="ItemStage" type="Control" parent="."]
 anchors_preset = 0
