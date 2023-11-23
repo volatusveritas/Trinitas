@@ -1,0 +1,51 @@
+[gd_scene load_steps=2 format=3 uid="uid://e48xq6goswvq"]
+
+[ext_resource type="Script" path="res://scenes/table_items/Counter.gd" id="1_rrko6"]
+
+[node name="Counter" type="Control"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 256.0
+offset_bottom = 256.0
+script = ExtResource("1_rrko6")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.647059, 0.545098, 0.380392, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Elements" type="HBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="PlusButton" type="Button" parent="CenterContainer/Elements"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "+"
+
+[node name="ValueLabel" type="Label" parent="CenterContainer/Elements"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/font_size = 32
+text = "000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MinusButton" type="Button" parent="CenterContainer/Elements"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "-"

@@ -13,6 +13,11 @@ func _ready() -> void:
         "res://scenes/table_items/RoachKillerCard.tscn"
     )
 
+    add_item(
+        "Basic Counter",
+        "res://scenes/table_items/Counter.tscn"
+    )
+
 func _input(_event: InputEvent) -> void:
     if Input.is_action_just_pressed("add_item"):
         visible = not visible
