@@ -9,8 +9,6 @@ func _ready() -> void:
             populate.rpc_id(id, build_mouse_map())
         )
 
-        return
-
     new_mouse.rpc(get_local_mouse_position())
 
 func _physics_process(_delta: float) -> void:
