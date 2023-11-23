@@ -18,6 +18,11 @@ func _ready() -> void:
         "res://scenes/table_items/Counter.tscn"
     )
 
+    add_item(
+        "Paper Note",
+        "res://scenes/table_items/SharedWriting.tscn"
+    )
+
 func _input(_event: InputEvent) -> void:
     if Input.is_action_just_pressed("add_item"):
         visible = not visible

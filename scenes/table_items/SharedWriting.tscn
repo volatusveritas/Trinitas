@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://cd60fb56d8v1n"]
+
+[ext_resource type="Script" path="res://scenes/table_items/SharedWriting.gd" id="1_lbgcs"]
+[ext_resource type="Texture2D" uid="uid://b1k3iveotes0w" path="res://assets/img/9p_paper.png" id="1_selgn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6xk3k"]
+
+[node name="SharedWriting" type="Control"]
+custom_minimum_size = Vector2(512, 512)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_lbgcs")
+
+[node name="Background" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_selgn")
+region_rect = Rect2(0, 0, 384, 384)
+patch_margin_left = 64
+patch_margin_top = 64
+patch_margin_right = 64
+patch_margin_bottom = 64
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="Writing" type="TextEdit" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.172549, 0.133333, 0.054902, 1)
+theme_override_colors/font_placeholder_color = Color(0.160784, 0.145098, 0.109804, 0.443137)
+theme_override_colors/caret_color = Color(0.172549, 0.133333, 0.054902, 1)
+theme_override_constants/line_spacing = -4
+theme_override_constants/caret_width = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6xk3k")
+placeholder_text = "Write your text here."
+wrap_mode = 1
+scroll_smooth = true
