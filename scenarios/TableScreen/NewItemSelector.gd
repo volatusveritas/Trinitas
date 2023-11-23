@@ -10,20 +10,20 @@ func _ready() -> void:
 
     add_item(
         "Roach Killer",
-        "res://scenes/table_items/RoachKillerCard.tscn"
+        "res://scenes/table_items/RoachKillerCard/RoachKillerCard.tscn"
     )
 
     add_item(
         "Basic Counter",
-        "res://scenes/table_items/Counter.tscn"
+        "res://scenes/table_items/Counter/Counter.tscn"
     )
 
     add_item(
         "Paper Note",
-        "res://scenes/table_items/SharedWriting.tscn"
+        "res://scenes/table_items/SharedWriting/SharedWriting.tscn"
     )
 
-func _input(_event: InputEvent) -> void:
+func _unhandled_input(_event: InputEvent) -> void:
     if Input.is_action_just_pressed("add_item"):
         visible = not visible
 

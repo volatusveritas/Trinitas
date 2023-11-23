@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bih87aanxeqhh"]
 
-[ext_resource type="Script" path="res://scenes/table_items/RoachKillerCard.gd" id="1_2jmil"]
+[ext_resource type="Script" path="res://scenes/table_items/RoachKillerCard/RoachKillerCard.gd" id="1_i1jim"]
 
 [node name="RoachKillerCard" type="Control"]
 custom_minimum_size = Vector2(256, 256)
@@ -8,7 +8,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 256.0
 offset_bottom = 256.0
-script = ExtResource("1_2jmil")
+script = ExtResource("1_i1jim")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1

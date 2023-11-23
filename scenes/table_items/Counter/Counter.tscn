@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://e48xq6goswvq"]
 
-[ext_resource type="Script" path="res://scenes/table_items/Counter.gd" id="1_rrko6"]
+[ext_resource type="Script" path="res://scenes/table_items/Counter/Counter.gd" id="1_un3r2"]
 
 [node name="Counter" type="Control"]
 custom_minimum_size = Vector2(256, 256)
@@ -8,7 +8,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 256.0
 offset_bottom = 256.0
-script = ExtResource("1_rrko6")
+script = ExtResource("1_un3r2")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
