@@ -34,6 +34,7 @@ alignment = 1
 
 [node name="PlusButton" type="Button" parent="CenterContainer/Elements"]
 layout_mode = 2
+focus_mode = 0
 theme_override_font_sizes/font_size = 32
 text = "+"
 
@@ -47,5 +48,6 @@ vertical_alignment = 1
 
 [node name="MinusButton" type="Button" parent="CenterContainer/Elements"]
 layout_mode = 2
+focus_mode = 0
 theme_override_font_sizes/font_size = 32
 text = "-"

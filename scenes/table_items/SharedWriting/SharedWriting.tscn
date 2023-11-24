@@ -1,13 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://cd60fb56d8v1n"]
+[gd_scene load_steps=6 format=3 uid="uid://cd60fb56d8v1n"]
 
 [ext_resource type="Script" path="res://scenes/table_items/SharedWriting/SharedWriting.gd" id="1_xkyh0"]
 [ext_resource type="Texture2D" uid="uid://b1k3iveotes0w" path="res://assets/img/9p_paper.png" id="2_lvcv0"]
-[ext_resource type="Script" path="res://scenes/table_items/SharedWriting/Writing.gd" id="3_38yra"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6xk3k"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e3688"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1e48p"]
+
 [node name="SharedWriting" type="Control"]
-custom_minimum_size = Vector2(512, 512)
+custom_minimum_size = Vector2(256, 256)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -27,8 +30,8 @@ patch_margin_left = 64
 patch_margin_top = 64
 patch_margin_right = 64
 patch_margin_bottom = 64
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 1
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
 
 [node name="Writing" type="TextEdit" parent="."]
 layout_mode = 1
@@ -47,7 +50,8 @@ theme_override_colors/caret_color = Color(0.172549, 0.133333, 0.054902, 1)
 theme_override_constants/line_spacing = -4
 theme_override_constants/caret_width = 2
 theme_override_styles/normal = SubResource("StyleBoxEmpty_6xk3k")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_e3688")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_1e48p")
 placeholder_text = "Write your text here."
 wrap_mode = 1
 scroll_smooth = true
-script = ExtResource("3_38yra")

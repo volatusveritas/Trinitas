@@ -18,7 +18,7 @@ func _input(event: InputEvent) -> void:
     if placeholder_item == null or not event is InputEventMouseButton:
         return
 
-    if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+    if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
         var syncinfo := placeholder_item._get_syncinfo()
 
         remove_child(placeholder_item)
@@ -34,6 +34,12 @@ func create_placeholder() -> void:
     add_child(placeholder_item)
 
     placeholder_item.modulate.a = PLACEHOLDER_OPACITY
+
+    var cover := Control.new()
+    cover.mouse_filter = Control.MOUSE_FILTER_STOP
+    cover.set_anchors_preset(PRESET_FULL_RECT)
+
+    placeholder_item.add_child(cover)
 
 func set_target(path: String) -> void:
     target_path = path
