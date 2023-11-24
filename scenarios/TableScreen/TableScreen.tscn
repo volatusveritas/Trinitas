@@ -36,7 +36,7 @@ script = ExtResource("2_xrvjm")
 
 [node name="Camera" type="Camera2D" parent="."]
 position_smoothing_enabled = true
-position_smoothing_speed = 20.0
+position_smoothing_speed = 8.0
 script = ExtResource("2_i4s73")
 
 [node name="FixedLayer" type="CanvasLayer" parent="."]

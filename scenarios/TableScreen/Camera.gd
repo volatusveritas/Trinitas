@@ -1,6 +1,6 @@
 extends Camera2D
 
-const SPEED := 700
+const SPEED := 1200
 
 var movement_direction := Vector2.ZERO
 
