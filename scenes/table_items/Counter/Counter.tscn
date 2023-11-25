@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://e48xq6goswvq"]
+[gd_scene load_steps=3 format=3 uid="uid://e48xq6goswvq"]
 
 [ext_resource type="Script" path="res://scenes/table_items/Counter/Counter.gd" id="1_un3r2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iqphb"]
+bg_color = Color(0.819608, 0.458824, 0.419608, 1)
+shadow_color = Color(0, 0, 0, 0.14902)
+shadow_size = 8
 
 [node name="Counter" type="Control"]
 custom_minimum_size = Vector2(256, 256)
@@ -10,14 +15,14 @@ offset_right = 256.0
 offset_bottom = 256.0
 script = ExtResource("1_un3r2")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.647059, 0.545098, 0.380392, 1)
+theme_override_styles/panel = SubResource("StyleBoxFlat_iqphb")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1

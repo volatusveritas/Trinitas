@@ -1,7 +1,11 @@
 [gd_scene load_steps=6 format=3 uid="uid://cd60fb56d8v1n"]
 
 [ext_resource type="Script" path="res://scenes/table_items/SharedWriting/SharedWriting.gd" id="1_xkyh0"]
-[ext_resource type="Texture2D" uid="uid://b1k3iveotes0w" path="res://assets/img/9p_paper.png" id="2_lvcv0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4louu"]
+bg_color = Color(0.870588, 0.745098, 0.45098, 1)
+shadow_color = Color(0, 0, 0, 0.14902)
+shadow_size = 8
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6xk3k"]
 
@@ -17,21 +21,14 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_xkyh0")
 
-[node name="Background" type="NinePatchRect" parent="."]
+[node name="Background" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_lvcv0")
-region_rect = Rect2(0, 0, 384, 384)
-patch_margin_left = 64
-patch_margin_top = 64
-patch_margin_right = 64
-patch_margin_bottom = 64
-axis_stretch_horizontal = 2
-axis_stretch_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4louu")
 
 [node name="Writing" type="TextEdit" parent="."]
 layout_mode = 1

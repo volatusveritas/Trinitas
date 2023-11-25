@@ -9,11 +9,6 @@ func _ready() -> void:
     item_requested.connect(func(_path): visible = false)
 
     add_item(
-        "Roach Killer",
-        "res://scenes/table_items/RoachKillerCard/RoachKillerCard.tscn"
-    )
-
-    add_item(
         "Basic Counter",
         "res://scenes/table_items/Counter/Counter.tscn"
     )
