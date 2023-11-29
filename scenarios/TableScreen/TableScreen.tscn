@@ -12,7 +12,8 @@
 shader = ExtResource("2_7iqwt")
 shader_parameter/offset = null
 shader_parameter/bar_size = 8.0
-shader_parameter/bar_spacing = 32.0
+shader_parameter/bar_spacing = 24.0
+shader_parameter/border_smoothness = 1.0
 shader_parameter/bullet_color = Color(0.254902, 0.254902, 0.254902, 1)
 
 [node name="TableScreen" type="Control"]
@@ -54,6 +55,7 @@ offset_bottom = 40.0
 script = ExtResource("2_xrvjm")
 
 [node name="Camera" type="Camera2D" parent="."]
+process_callback = 0
 position_smoothing_speed = 8.0
 script = ExtResource("2_i4s73")
 

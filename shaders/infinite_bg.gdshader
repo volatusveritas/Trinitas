@@ -3,6 +3,7 @@ shader_type canvas_item;
 uniform vec2 offset;
 uniform float bar_size = 16.0;
 uniform float bar_spacing = 48.0;
+uniform float border_smoothness = 0.5;
 uniform vec4 bullet_color: source_color;
 
 uniform sampler2D screen_texture: hint_screen_texture;
@@ -37,7 +38,15 @@ void fragment() {
     vec2 pixel_coord = SCREEN_UV / SCREEN_PIXEL_SIZE + offset;
 
     if (coord_in_bar(pixel_coord) && coord_in_bar_circle(pixel_coord)) {
-        COLOR = bullet_color;
+        vec2 circle_center = get_circle_center(pixel_coord);
+
+        float opacity = 1.0 - smoothstep(
+            bar_size / 2.0 - border_smoothness,
+            bar_size / 2.0,
+            distance(circle_center, pixel_coord)
+        );
+
+        COLOR = vec4(bullet_color.rgb, bullet_color.a * opacity);
     }
     else {
         COLOR = texture(screen_texture, SCREEN_UV);
