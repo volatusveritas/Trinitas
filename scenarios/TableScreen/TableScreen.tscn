@@ -1,11 +1,19 @@
-[gd_scene load_steps=7 format=3 uid="uid://c2mtkd1wdlf0c"]
+[gd_scene load_steps=9 format=3 uid="uid://c2mtkd1wdlf0c"]
 
 [ext_resource type="Script" path="res://scenarios/TableScreen/TableScreen.gd" id="1_oohwr"]
+[ext_resource type="Shader" path="res://shaders/infinite_bg.gdshader" id="2_7iqwt"]
 [ext_resource type="Script" path="res://scenarios/TableScreen/Camera.gd" id="2_i4s73"]
 [ext_resource type="Script" path="res://scenarios/TableScreen/TableItems.gd" id="2_ugci6"]
 [ext_resource type="Script" path="res://scenarios/TableScreen/MouseHub.gd" id="2_xrvjm"]
 [ext_resource type="Script" path="res://scenarios/TableScreen/NewItemSelector.gd" id="3_2p4jk"]
 [ext_resource type="Script" path="res://scenarios/TableScreen/ItemStage.gd" id="3_qu43g"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yc3um"]
+shader = ExtResource("2_7iqwt")
+shader_parameter/offset = null
+shader_parameter/bar_size = 8.0
+shader_parameter/bar_spacing = 32.0
+shader_parameter/bullet_color = Color(0.254902, 0.254902, 0.254902, 1)
 
 [node name="TableScreen" type="Control"]
 layout_mode = 3
@@ -15,6 +23,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_oohwr")
+
+[node name="BackgroundLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="InfiniteBackground" type="ColorRect" parent="BackgroundLayer"]
+material = SubResource("ShaderMaterial_yc3um")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="TableItems" type="Control" parent="."]
 anchors_preset = 0
@@ -35,7 +54,6 @@ offset_bottom = 40.0
 script = ExtResource("2_xrvjm")
 
 [node name="Camera" type="Camera2D" parent="."]
-position_smoothing_enabled = true
 position_smoothing_speed = 8.0
 script = ExtResource("2_i4s73")
 
