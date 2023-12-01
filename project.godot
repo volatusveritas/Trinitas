@@ -13,7 +13,7 @@ config_version=5
 config/name="Trinitas VTT"
 config/description="A self-hosted customizable Virtual Tabletop program."
 run/main_scene="res://scenarios/ConnectionScreen/ConnectionScreen.tscn"
-config/features=PackedStringArray("4.1", "Forward Plus")
+config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
