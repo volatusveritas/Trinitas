@@ -28,7 +28,7 @@ script = ExtResource("1_oohwr")
 [node name="BackgroundLayer" type="CanvasLayer" parent="."]
 layer = -1
 
-[node name="InfiniteBackground" type="ColorRect" parent="BackgroundLayer"]
+[node name="Background" type="ColorRect" parent="BackgroundLayer"]
 material = SubResource("ShaderMaterial_yc3um")
 anchors_preset = 15
 anchor_right = 1.0
@@ -55,7 +55,7 @@ offset_bottom = 40.0
 script = ExtResource("2_xrvjm")
 
 [node name="Camera" type="Camera2D" parent="."]
-process_callback = 0
+position_smoothing_enabled = true
 position_smoothing_speed = 8.0
 script = ExtResource("2_i4s73")
 

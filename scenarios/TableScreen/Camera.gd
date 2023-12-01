@@ -9,6 +9,8 @@ var zoom_direction := 0.0
 var zoom_acceleration_rate := 3.0
 var zoom_deceleration_rate := 0.85
 
+var _infinidots_shader: ShaderMaterial = null
+
 func _physics_process(delta: float) -> void:
     position += movement_direction * SPEED * delta / zoom.x
 
@@ -20,6 +22,12 @@ func _physics_process(delta: float) -> void:
     zoom.y += zoom_step
 
     zoom_direction *= zoom_deceleration_rate
+
+    if _infinidots_shader:
+        _infinidots_shader.set_shader_parameter(
+            "offset",
+            get_screen_center_position()
+        )
 
 func _unhandled_input(input: InputEvent) -> void:
     if get_tree().root.gui_get_focus_owner() != null:
