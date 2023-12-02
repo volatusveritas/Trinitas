@@ -9,12 +9,12 @@ func _ready() -> void:
     item_requested.connect(func(_path): visible = false)
 
     add_item(
-        "Basic Counter",
+        "Counter",
         "res://scenes/table_items/Counter/Counter.tscn"
     )
 
     add_item(
-        "Paper Note",
+        "Note",
         "res://scenes/table_items/SharedWriting/SharedWriting.tscn"
     )
 
