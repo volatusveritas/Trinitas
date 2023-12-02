@@ -11,7 +11,8 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yc3um"]
 shader = ExtResource("2_7iqwt")
-shader_parameter/offset = null
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/zoom = Vector2(1, 1)
 shader_parameter/bar_size = 8.0
 shader_parameter/bar_spacing = 64.0
 shader_parameter/border_smoothness = 1.0

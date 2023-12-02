@@ -28,6 +28,10 @@ func _physics_process(delta: float) -> void:
             "offset",
             get_screen_center_position()
         )
+        _infinidots_shader.set_shader_parameter(
+            "zoom",
+            zoom
+        )
 
 func _unhandled_input(input: InputEvent) -> void:
     if get_tree().root.gui_get_focus_owner() != null:

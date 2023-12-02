@@ -1,6 +1,8 @@
 shader_type canvas_item;
 
-uniform vec2 offset;
+uniform vec2 offset = vec2(0.0);
+uniform vec2 zoom = vec2(1.0);
+
 uniform float bar_size = 16.0;
 uniform float bar_spacing = 48.0;
 uniform float border_smoothness = 0.5;
@@ -11,7 +13,7 @@ uniform sampler2D screen_texture: hint_screen_texture;
 void fragment() {
     float bar_jump = bar_size + bar_spacing;
 
-    vec2 pixel_coord = SCREEN_UV / SCREEN_PIXEL_SIZE + offset;
+    vec2 pixel_coord = SCREEN_UV / SCREEN_PIXEL_SIZE + offset * zoom;
     vec2 bar_anchor = floor(pixel_coord / bar_jump) * bar_jump;
     vec2 bar_center = bar_anchor + (bar_size - 1.0) / 2.0;
     float distance_to_center = distance(pixel_coord, bar_center);
