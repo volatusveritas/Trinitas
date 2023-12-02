@@ -21,7 +21,8 @@ func _input(event: InputEvent) -> void:
     if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
         var syncinfo := placeholder_item._get_syncinfo()
 
-        reset()
+        if not Input.is_action_pressed("keep_placing"):
+            reset()
 
         item_confirmed.emit(target_path, syncinfo)
 
