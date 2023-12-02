@@ -11,23 +11,33 @@ uniform vec4 bullet_color: source_color;
 uniform sampler2D screen_texture: hint_screen_texture;
 
 void fragment() {
-    float bar_jump = bar_size + bar_spacing;
+    float adj_bar_size = bar_size * zoom.x;
+    float adj_bar_spacing = bar_spacing * zoom.x;
+    float adj_border_smoothness = border_smoothness * zoom.x;
+    float bar_jump = adj_bar_size + adj_bar_spacing;
 
-    vec2 pixel_coord = SCREEN_UV / SCREEN_PIXEL_SIZE + offset * zoom;
+    vec2 screen_size = 1.0 / SCREEN_PIXEL_SIZE;
+
+    vec2 pixel_coord = (
+        SCREEN_UV * screen_size
+        - screen_size / 2.0
+        + offset * zoom
+    );
+
     vec2 bar_anchor = floor(pixel_coord / bar_jump) * bar_jump;
-    vec2 bar_center = bar_anchor + (bar_size - 1.0) / 2.0;
+    vec2 bar_center = bar_anchor + (adj_bar_size - 1.0) / 2.0;
     float distance_to_center = distance(pixel_coord, bar_center);
     vec2 distance_to_anchor = pixel_coord - bar_anchor + 1.0;
 
     bool coord_in_bar = (
-        distance_to_anchor.x <= bar_size
-        && distance_to_anchor.y <= bar_size
+        distance_to_anchor.x <= adj_bar_size
+        && distance_to_anchor.y <= adj_bar_size
     );
 
-    if (coord_in_bar && distance_to_center <= bar_size / 2.0) {
+    if (coord_in_bar && distance_to_center <= adj_bar_size / 2.0) {
         float opacity = 1.0 - smoothstep(
-            bar_size / 2.0 - border_smoothness,
-            bar_size / 2.0,
+            adj_bar_size / 2.0 - adj_border_smoothness,
+            adj_bar_size / 2.0,
             distance_to_center
         );
 
