@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=3 uid="uid://bujksgd53mshc"]
+
+[ext_resource type="Script" path="res://scenes/table_items/Token/Token.gd" id="1_jqqvs"]
+[ext_resource type="Texture2D" uid="uid://chhjwf8p3v24i" path="res://assets/img/token.svg" id="1_rr0fj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qosn5"]
+draw_center = false
+corner_radius_top_left = 80
+corner_radius_top_right = 80
+corner_radius_bottom_right = 80
+corner_radius_bottom_left = 80
+shadow_color = Color(0, 0, 0, 0.207843)
+shadow_size = 8
+
+[node name="Token" type="Control"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 64.0
+offset_bottom = 64.0
+script = ExtResource("1_jqqvs")
+metadata/_edit_group_ = true
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qosn5")
+
+[node name="Icon" type="TextureRect" parent="."]
+modulate = Color(0.2, 0.690196, 0.8, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_rr0fj")
+expand_mode = 1

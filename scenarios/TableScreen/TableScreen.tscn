@@ -42,12 +42,12 @@ grow_vertical = 2
 [node name="Logo" type="TextureRect" parent="."]
 modulate = Color(0, 0, 0, 0.027451)
 layout_mode = 0
-offset_left = -205.0
-offset_top = -205.0
-offset_right = 205.0
-offset_bottom = 205.0
+offset_left = -256.0
+offset_top = -256.0
+offset_right = 256.0
+offset_bottom = 256.0
 texture = ExtResource("3_1ykfl")
-stretch_mode = 3
+expand_mode = 1
 
 [node name="TableItems" type="Control" parent="."]
 anchors_preset = 0
