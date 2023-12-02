@@ -49,17 +49,23 @@ layout_mode = 2
 
 [node name="IPField" type="LineEdit" parent="MenuItems/ConnectInfo"]
 layout_mode = 2
+focus_next = NodePath("../ConnectButton")
+focus_previous = NodePath("../../HostButton")
 placeholder_text = "IP"
 alignment = 1
 
 [node name="ConnectButton" type="Button" parent="MenuItems/ConnectInfo"]
 layout_mode = 2
+focus_next = NodePath("../../HostButton")
+focus_previous = NodePath("../IPField")
 disabled = true
 text = "Connect
 "
 
 [node name="HostButton" type="Button" parent="MenuItems"]
 layout_mode = 2
+focus_next = NodePath("../ConnectInfo/IPField")
+focus_previous = NodePath("../ConnectInfo/ConnectButton")
 text = "Host"
 
 [node name="ErrorLabel" type="Label" parent="."]
