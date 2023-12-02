@@ -21,11 +21,17 @@ func _input(event: InputEvent) -> void:
     if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
         var syncinfo := placeholder_item._get_syncinfo()
 
-        remove_child(placeholder_item)
-        placeholder_item.queue_free()
-        placeholder_item = null
+        reset()
 
         item_confirmed.emit(target_path, syncinfo)
+
+func reset() -> void:
+    if placeholder_item == null:
+        return
+
+    remove_child(placeholder_item)
+    placeholder_item.queue_free()
+    placeholder_item = null
 
 func create_placeholder() -> void:
     var scene := load(target_path)

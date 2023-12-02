@@ -1,6 +1,7 @@
 class_name NewItemSelector
 extends Control
 
+signal selection_started
 signal item_requested(path: String)
 
 @onready var ItemButtons: VBoxContainer = $Elements/ScrollContainer/ItemButtons
@@ -26,6 +27,7 @@ func _ready() -> void:
 func _unhandled_input(_event: InputEvent) -> void:
     if Input.is_action_just_pressed("add_item"):
         visible = not visible
+        selection_started.emit()
 
 func add_item(item_name: String, path: String) -> void:
     var item_button := Button.new()
