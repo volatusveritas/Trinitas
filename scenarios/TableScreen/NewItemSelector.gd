@@ -24,6 +24,11 @@ func _ready() -> void:
         "res://scenes/table_items/Token/Token.tscn"
     )
 
+    add_item(
+        "Label",
+        "res://scenes/table_items/Label/Label.tscn"
+    )
+
 func _unhandled_input(event: InputEvent) -> void:
     if event.is_action_pressed("add_item"):
         visible = not visible

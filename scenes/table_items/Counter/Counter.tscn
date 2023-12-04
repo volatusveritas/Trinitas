@@ -8,11 +8,11 @@ shadow_color = Color(0, 0, 0, 0.14902)
 shadow_size = 8
 
 [node name="Counter" type="Control"]
-custom_minimum_size = Vector2(176, 96)
+custom_minimum_size = Vector2(160, 80)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 176.0
-offset_bottom = 96.0
+offset_right = 160.0
+offset_bottom = 80.0
 script = ExtResource("1_un3r2")
 
 [node name="Background" type="Panel" parent="."]

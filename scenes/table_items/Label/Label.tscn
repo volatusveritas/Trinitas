@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://q717tt4w31bm"]
+
+[ext_resource type="Script" path="res://scenes/table_items/Label/Label.gd" id="1_vqrnp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3xknt"]
+bg_color = Color(0.356863, 0.780392, 0.901961, 1)
+shadow_color = Color(0, 0, 0, 0.207843)
+shadow_size = 8
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_skio5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1c0sj"]
+
+[node name="Label" type="Control"]
+custom_minimum_size = Vector2(224, 48)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 224.0
+offset_bottom = 48.0
+script = ExtResource("1_vqrnp")
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3xknt")
+
+[node name="Line" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.164706, 0.109804, 0.0352941, 1)
+theme_override_colors/font_placeholder_color = Color(0, 0, 0, 0.262745)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxEmpty_skio5")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1c0sj")
+placeholder_text = "Your Text"
+alignment = 1

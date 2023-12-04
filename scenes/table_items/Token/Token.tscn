@@ -21,7 +21,7 @@ offset_bottom = 64.0
 script = ExtResource("1_jqqvs")
 metadata/_edit_group_ = true
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Background" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
