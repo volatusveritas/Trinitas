@@ -3,6 +3,12 @@ extends Control
 
 var _path := ""
 
+func _has_point(point: Vector2) -> bool:
+    return Hitboxes.rectangle(self, point)
+
+func _in_move_region(point: Vector2) -> bool:
+    return _has_point(point)
+
 func _get_syncinfo() -> Dictionary:
     return {}
 

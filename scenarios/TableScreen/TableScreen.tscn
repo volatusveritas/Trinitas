@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c2mtkd1wdlf0c"]
+[gd_scene load_steps=13 format=3 uid="uid://c2mtkd1wdlf0c"]
 
 [ext_resource type="Script" path="res://scenarios/TableScreen/TableScreen.gd" id="1_oohwr"]
 [ext_resource type="Shader" path="res://shaders/infinite_bg.gdshader" id="2_7iqwt"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://dib1j7wgsgtw8" path="res://assets/img/logo.svg" id="3_1ykfl"]
 [ext_resource type="Script" path="res://scenarios/TableScreen/NewItemSelector.gd" id="3_2p4jk"]
 [ext_resource type="Script" path="res://scenarios/TableScreen/ItemStage.gd" id="3_qu43g"]
+[ext_resource type="FontFile" uid="uid://cakht3wf8rhg5" path="res://assets/fonts/space_mono/bold_italic.ttf" id="8_lol00"]
+[ext_resource type="Script" path="res://scenarios/TableScreen/ModeIndicator.gd" id="8_vco2a"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yc3um"]
 shader = ExtResource("2_7iqwt")
@@ -17,6 +19,10 @@ shader_parameter/bar_size = 8.0
 shader_parameter/bar_spacing = 64.0
 shader_parameter/border_smoothness = 1.0
 shader_parameter/bullet_color = Color(0.254902, 0.254902, 0.254902, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wig67"]
+bg_color = Color(0, 0, 0, 0.180392)
+skew = Vector2(0.25, 0)
 
 [node name="TableScreen" type="Control"]
 layout_mode = 3
@@ -74,6 +80,46 @@ position_smoothing_speed = 8.0
 script = ExtResource("2_i4s73")
 
 [node name="FixedLayer" type="CanvasLayer" parent="."]
+
+[node name="ModeIndicator" type="Control" parent="FixedLayer"]
+modulate = Color(1, 1, 1, 0.901961)
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -40.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("8_vco2a")
+
+[node name="Background" type="Panel" parent="FixedLayer/ModeIndicator"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_right = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wig67")
+
+[node name="ModeLabel" type="Label" parent="FixedLayer/ModeIndicator"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("8_lol00")
+text = "Normal"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="NewItemSelector" type="Control" parent="FixedLayer"]
 visible = false

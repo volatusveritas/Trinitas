@@ -1,5 +1,7 @@
 extends Camera2D
 
+signal moved(offset: Vector2)
+
 const SPEED := 1200
 const MIN_ZOOM := 0.5
 const MAX_ZOOM := 1.75
@@ -9,9 +11,14 @@ var zoom_direction := 0.0
 var zoom_acceleration_rate := 3.0
 var zoom_deceleration_rate := 0.85
 
+var _last_center := Vector2.ZERO
 var _infinidots_shader: ShaderMaterial = null
 
 func _physics_process(delta: float) -> void:
+    var new_center = get_screen_center_position()
+    moved.emit(new_center - _last_center)
+    _last_center = new_center
+
     position += movement_direction * SPEED * delta / zoom.x
 
     var target_zoom: float = clamp(zoom.x + zoom_direction, MIN_ZOOM, MAX_ZOOM)

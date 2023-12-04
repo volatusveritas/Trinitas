@@ -1,5 +1,8 @@
 extends TableItem
 
+func _has_point(point: Vector2) -> bool:
+    return Hitboxes.ellipse(self, point)
+
 func _get_syncinfo() -> Dictionary:
     return {
         "pos": global_position,

@@ -11,7 +11,7 @@ shadow_size = 8
 custom_minimum_size = Vector2(176, 96)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 128.0
+offset_right = 176.0
 offset_bottom = 96.0
 script = ExtResource("1_un3r2")
 

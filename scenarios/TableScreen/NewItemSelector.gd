@@ -24,8 +24,8 @@ func _ready() -> void:
         "res://scenes/table_items/Token/Token.tscn"
     )
 
-func _unhandled_input(_event: InputEvent) -> void:
-    if Input.is_action_just_pressed("add_item"):
+func _unhandled_input(event: InputEvent) -> void:
+    if event.is_action_pressed("add_item"):
         visible = not visible
         selection_started.emit()
 
