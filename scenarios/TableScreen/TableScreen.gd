@@ -27,21 +27,22 @@ func _ready() -> void:
     )
 
 func _process(_delta: float) -> void:
-    if Input.is_action_just_pressed("enter_normal_mode"):
-        GameState.mode = GameState.Mode.NORMAL
-    elif Input.is_action_just_pressed("enter_move_mode"):
-        GameState.mode = GameState.Mode.MOVE
-
-    if Input.is_action_just_pressed("cancel_item_placement"):
-        item_stage.reset()
-
+    if Input.is_action_just_released("move_mode_drag"):
+        drag_target = null
+        
+    if Input.is_action_just_pressed("drop_focus"):
         var focused := get_tree().root.gui_get_focus_owner()
-
+        
         if focused != null:
             focused.release_focus()
 
-    if Input.is_action_just_released("move_mode_drag"):
-        drag_target = null
+func _unhandled_input(event: InputEvent) -> void:
+    if event.is_action_pressed("enter_normal_mode"):
+        GameState.mode = GameState.Mode.NORMAL
+    elif event.is_action_pressed("enter_move_mode"):
+        GameState.mode = GameState.Mode.MOVE
+    elif event.is_action_pressed("cancel_item_placement"):
+        item_stage.reset()
 
 func _input(input: InputEvent) -> void:
     var drag_input = input as InputEventMouseMotion
