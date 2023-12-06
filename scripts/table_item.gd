@@ -21,3 +21,7 @@ func update_remote() -> void:
 @rpc("any_peer", "call_local", "reliable")
 func update_local(syncinfo: Dictionary) -> void:
     _apply_syncinfo(syncinfo)
+
+func update_move_handle_filter(new_filter: Control.MouseFilter) -> void:
+    var move_handle: MoveHandle = get_child(get_child_count() - 1)
+    move_handle.mouse_filter = new_filter

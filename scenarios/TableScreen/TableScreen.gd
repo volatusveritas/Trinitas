@@ -26,6 +26,11 @@ func _ready() -> void:
         drag_target.update_remote()
     )
 
+    var save_button: Button = $FixedLayer/SessionButtons/SaveButton
+    save_button.pressed.connect(save_table)
+    var load_button: Button = $FixedLayer/SessionButtons/LoadButton
+    load_button.pressed.connect(load_table)
+
 func _process(_delta: float) -> void:
     if Input.is_action_just_released("move_mode_drag"):
         drag_target = null
@@ -52,3 +57,23 @@ func _input(input: InputEvent) -> void:
 
     drag_target.global_position += drag_input.relative / camera.zoom.x
     drag_target.update_remote()
+
+func save_table() -> void:
+    var file = FileAccess.open("user://save.trinitable", FileAccess.WRITE)
+
+    if file == null:
+        return
+
+    var contents := table_items.build_item_map()
+
+    file.store_var(contents)
+
+func load_table() -> void:
+    var file = FileAccess.open("user://save.trinitable", FileAccess.READ)
+
+    if file == null:
+        return
+
+    var contents: Dictionary = file.get_var()
+
+    table_items.populate(contents)

@@ -15,6 +15,11 @@ func get_move_handle_mode_filter(mode: GameState.Mode) -> Control.MouseFilter:
 
     return Control.MOUSE_FILTER_IGNORE
 
+func destroy_item(item: TableItem) -> void:
+    GameState.mode_changed.disconnect(item.update_move_handle_filter)
+    remove_child(item)
+    item.queue_free()
+
 func add_item(path: String, syncinfo: Dictionary) -> TableItem:
     var scene := load(path)
     var table_item: TableItem = scene.instantiate()
@@ -29,9 +34,7 @@ func add_item(path: String, syncinfo: Dictionary) -> TableItem:
 
     move_handle.mouse_filter = get_move_handle_mode_filter(GameState.mode)
 
-    GameState.mode_changed.connect(func(new_mode: GameState.Mode) -> void:
-        move_handle.mouse_filter = get_move_handle_mode_filter(new_mode)
-    )
+    GameState.mode_changed.connect(table_item.update_move_handle_filter)
 
     move_handle.set_anchors_preset(Control.PRESET_FULL_RECT)
     move_handle.mouse_default_cursor_shape = Control.CURSOR_MOVE
@@ -71,6 +74,9 @@ func build_item_map() -> Dictionary:
 
 @rpc("any_peer", "call_remote", "reliable")
 func populate(item_map: Dictionary) -> void:
+    for child in get_children():
+        destroy_item(child)
+
     for id in item_map:
         var item := add_item(item_map[id]["path"], item_map[id]["syncinfo"])
         item.name = id
