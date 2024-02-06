@@ -9,12 +9,6 @@ func _ready() -> void:
             populate.rpc_id(id, build_item_map())
         )
 
-func get_move_handle_mode_filter(mode: GameState.Mode) -> Control.MouseFilter:
-    if mode == GameState.Mode.MOVE:
-        return Control.MOUSE_FILTER_STOP
-
-    return Control.MOUSE_FILTER_IGNORE
-
 func destroy_item(item: TableItem) -> void:
     GameState.mode_changed.disconnect(item.update_move_handle_filter)
     remove_child(item)
@@ -32,12 +26,6 @@ func add_item(path: String, syncinfo: Dictionary) -> TableItem:
     var move_handle := MoveHandle.new()
     table_item.add_child(move_handle)
 
-    move_handle.mouse_filter = get_move_handle_mode_filter(GameState.mode)
-
-    GameState.mode_changed.connect(table_item.update_move_handle_filter)
-
-    move_handle.set_anchors_preset(Control.PRESET_FULL_RECT)
-    move_handle.mouse_default_cursor_shape = Control.CURSOR_MOVE
     move_handle.in_region = table_item._in_move_region
 
     move_handle.drag_started.connect(func(target: TableItem):

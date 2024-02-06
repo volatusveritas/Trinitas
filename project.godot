@@ -90,4 +90,5 @@ drop_focus={
 [rendering]
 
 environment/defaults/default_clear_color=Color(0.215686, 0.215686, 0.215686, 1)
+anti_aliasing/quality/msaa_2d=3
 2d/snap/snap_2d_transforms_to_pixel=true
