@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bn5qf6wm4kbe"]
+
+[ext_resource type="Script" path="res://scenes/status_label/status_label.gd" id="1_0qy4j"]
+
+[node name="StatusLabel" type="Label"]
+offset_right = 40.0
+offset_bottom = 24.0
+script = ExtResource("1_0qy4j")
