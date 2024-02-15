@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c2mtkd1wdlf0c"]
+[gd_scene load_steps=19 format=3 uid="uid://c2mtkd1wdlf0c"]
 
 [ext_resource type="Script" path="res://scenarios/TableScreen/TableScreen.gd" id="1_oohwr"]
 [ext_resource type="Shader" path="res://shaders/infinite_bg.gdshader" id="2_7iqwt"]
@@ -10,6 +10,10 @@
 [ext_resource type="Script" path="res://scenarios/TableScreen/ItemStage.gd" id="3_qu43g"]
 [ext_resource type="FontFile" uid="uid://cakht3wf8rhg5" path="res://assets/fonts/space_mono/bold_italic.ttf" id="8_lol00"]
 [ext_resource type="Script" path="res://scenarios/TableScreen/ModeIndicator.gd" id="8_vco2a"]
+[ext_resource type="Script" path="res://scenarios/TableScreen/Menu.gd" id="11_y22qq"]
+[ext_resource type="Script" path="res://scenarios/TableScreen/SaveTablePopup.gd" id="12_tyujx"]
+[ext_resource type="Script" path="res://scenes/status_label/status_label.gd" id="13_01bdo"]
+[ext_resource type="Script" path="res://scenarios/TableScreen/ConfirmationPopup.gd" id="14_vyy7n"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yc3um"]
 shader = ExtResource("2_7iqwt")
@@ -23,6 +27,20 @@ shader_parameter/bullet_color = Color(0.254902, 0.254902, 0.254902, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wig67"]
 bg_color = Color(0, 0, 0, 0.180392)
 skew = Vector2(0.25, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3wg1w"]
+bg_color = Color(0, 0, 0, 0.364706)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jqou2"]
+bg_color = Color(0, 0, 0, 0.364706)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [node name="TableScreen" type="Control"]
 layout_mode = 3
@@ -171,26 +189,187 @@ visible = false
 layout_mode = 2
 text = "Example Item"
 
-[node name="SessionButtons" type="VBoxContainer" parent="FixedLayer"]
-modulate = Color(1, 1, 1, 0.901961)
-anchors_preset = 2
-anchor_top = 1.0
+[node name="Menu" type="Control" parent="FixedLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 16.0
-offset_top = -72.0
-offset_right = 122.0
-offset_bottom = -16.0
-grow_vertical = 0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("11_y22qq")
+
+[node name="Background" type="ColorRect" parent="FixedLayer/Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.364706)
+
+[node name="Elements" type="VBoxContainer" parent="FixedLayer/Menu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.1
+anchor_right = 1.0
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="FixedLayer/Menu/Elements"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Buttons" type="VBoxContainer" parent="FixedLayer/Menu/Elements"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+
+[node name="SaveTableButton" type="Button" parent="FixedLayer/Menu/Elements/Buttons"]
+layout_mode = 2
+text = "Save Table"
+
+[node name="LoadTableButton" type="Button" parent="FixedLayer/Menu/Elements/Buttons"]
+layout_mode = 2
+text = "Load Table"
+
+[node name="SaveTablePopup" type="Control" parent="FixedLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("12_tyujx")
+
+[node name="Box" type="Panel" parent="FixedLayer/SaveTablePopup"]
+custom_minimum_size = Vector2(384, 226)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = -113.0
+offset_right = 192.0
+offset_bottom = 113.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3wg1w")
+
+[node name="Title" type="Label" parent="FixedLayer/SaveTablePopup/Box"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_top = 16.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 24
+text = "Save Table"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Elements" type="VBoxContainer" parent="FixedLayer/SaveTablePopup/Box"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2
+anchor_top = 0.2
+anchor_right = 0.8
+anchor_bottom = 0.8
+grow_horizontal = 2
+grow_vertical = 2
 alignment = 1
 
-[node name="SaveButton" type="Button" parent="FixedLayer/SessionButtons"]
+[node name="NameInput" type="LineEdit" parent="FixedLayer/SaveTablePopup/Box/Elements"]
 layout_mode = 2
-focus_mode = 0
-theme_override_font_sizes/font_size = 12
+placeholder_text = "Table Name"
+alignment = 1
+
+[node name="SaveButton" type="Button" parent="FixedLayer/SaveTablePopup/Box/Elements"]
+layout_mode = 2
+disabled = true
 text = "Save"
 
-[node name="LoadButton" type="Button" parent="FixedLayer/SessionButtons"]
-layout_mode = 2
-focus_mode = 0
+[node name="StatusLabel" type="Label" parent="FixedLayer/SaveTablePopup/Box"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
 theme_override_font_sizes/font_size = 12
-text = "Load"
+text = "Status message"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("13_01bdo")
+
+[node name="ConfirmationPopup" type="Control" parent="FixedLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("14_vyy7n")
+
+[node name="Box" type="Panel" parent="FixedLayer/ConfirmationPopup"]
+custom_minimum_size = Vector2(348, 212)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jqou2")
+
+[node name="Elements" type="VBoxContainer" parent="FixedLayer/ConfirmationPopup/Box"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="ConfirmationLabel" type="Label" parent="FixedLayer/ConfirmationPopup/Box/Elements"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_vertical = 3
+text = "<confirmation text>"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Buttons" type="HBoxContainer" parent="FixedLayer/ConfirmationPopup/Box/Elements"]
+layout_mode = 2
+alignment = 1
+
+[node name="ProceedButton" type="Button" parent="FixedLayer/ConfirmationPopup/Box/Elements/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Proceed"
+
+[node name="CancelButton" type="Button" parent="FixedLayer/ConfirmationPopup/Box/Elements/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Cancel"

@@ -2,21 +2,43 @@ extends Control
 
 var drag_target: TableItem = null
 
-@onready var new_item_selector: NewItemSelector = $FixedLayer/NewItemSelector
-@onready var item_stage: ItemStage = $ItemStage
-@onready var table_items: TableItems = $TableItems
-@onready var camera: Camera2D = $Camera
+const TABLES_PATH := "tables"
+
+@onready var new_item_selector := $FixedLayer/NewItemSelector as NewItemSelector
+@onready var item_stage := $ItemStage as ItemStage
+@onready var table_items := $TableItems as TableItems
+@onready var camera := $Camera as Camera2D
+@onready var confirmation_popup := $FixedLayer/ConfirmationPopup as ConfirmationPopup
+@onready var save_table_popup := $FixedLayer/SaveTablePopup as Control
 
 func _ready() -> void:
     new_item_selector.selection_started.connect(item_stage.reset)
     new_item_selector.item_requested.connect(item_stage.set_target)
     item_stage.item_confirmed.connect(table_items.create_item)
-    var background: ColorRect = $BackgroundLayer/Background
-    camera._infinidots_shader = background.material as ShaderMaterial
-
     table_items.drag_started.connect(func(target: TableItem):
         drag_target = target
     )
+
+    var menu := $FixedLayer/Menu as Menu
+
+    var save_table_button := $FixedLayer/Menu/Elements/Buttons/SaveTableButton as Button
+    var _load_table_button := $FixedLayer/Menu/Elements/Buttons/LoadTableButton as Button
+
+    save_table_button.pressed.connect(func() -> void:
+        save_table_popup.show()
+        menu.hide()
+    )
+
+    # load_table_button.pressed.connect(func() -> void:
+        # load_table_popup.show()
+        # menu.hide()
+    # )
+
+    save_table_popup.save_requested.connect(save_table)
+    # load_table_popup.load_requested.connect(load_table)
+
+    var background: ColorRect = $BackgroundLayer/Background
+    camera._infinidots_shader = background.material as ShaderMaterial
 
     camera.moved.connect(func(offset: Vector2):
         if drag_target == null:
@@ -25,11 +47,6 @@ func _ready() -> void:
         drag_target.global_position += offset
         drag_target.update_remote()
     )
-
-    var save_button: Button = $FixedLayer/SessionButtons/SaveButton
-    save_button.pressed.connect(save_table)
-    var load_button: Button = $FixedLayer/SessionButtons/LoadButton
-    load_button.pressed.connect(load_table)
 
 func _process(_delta: float) -> void:
     if Input.is_action_just_released("move_mode_drag"):
@@ -58,22 +75,51 @@ func _input(input: InputEvent) -> void:
     drag_target.global_position += drag_input.relative / camera.zoom.x
     drag_target.update_remote()
 
-func save_table() -> void:
-    var file = FileAccess.open("user://save.trinitable", FileAccess.WRITE)
+func get_table_path(save_name: String) -> String:
+    return "user://%s/%s.trinitas_table" % [TABLES_PATH, save_name]
+
+func save_table(save_name: String, status_label: StatusLabel) -> void:
+    var dir_access := DirAccess.open("user://")
+
+    if not dir_access.dir_exists(TABLES_PATH):
+        # TODO: make this message more useful
+        status_label.error("Could not write to file.")
+        dir_access.make_dir(TABLES_PATH)
+
+    var file_path := get_table_path(save_name)
+
+    if FileAccess.file_exists(file_path):
+        save_table_popup.hide()
+
+        var answer := await confirmation_popup.confirm(
+            "A table with this save_name already exists. Overwrite?"
+        )
+
+        save_table_popup.show()
+
+        if not answer:
+            return
+
+    var file = FileAccess.open(file_path, FileAccess.WRITE)
 
     if file == null:
+        status_label.error("Could not write to file.")
         return
 
     var contents := table_items.build_item_map()
 
     file.store_var(contents)
+    status_label.info("Table saved.")
 
-func load_table() -> void:
-    var file = FileAccess.open("user://save.trinitable", FileAccess.READ)
+func load_table(save_name: String, status_label: StatusLabel) -> void:
+    var file_path := get_table_path(save_name)
+    var file = FileAccess.open(file_path, FileAccess.READ)
 
     if file == null:
+        status_label.error("Could not read file.")
         return
 
     var contents: Dictionary = file.get_var()
 
     table_items.populate(contents)
+    status_label.info("Table loaded.")
