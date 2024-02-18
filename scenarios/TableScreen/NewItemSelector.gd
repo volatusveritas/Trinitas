@@ -29,6 +29,11 @@ func _ready() -> void:
         "res://scenes/table_items/Label/Label.tscn"
     )
 
+func _unhandled_key_input(event: InputEvent) -> void:
+    if visible and event.is_action_pressed("ui_cancel"):
+        visible = false
+        get_tree().root.set_input_as_handled()
+
 func _unhandled_input(event: InputEvent) -> void:
     if event.is_action_pressed("add_item"):
         visible = not visible

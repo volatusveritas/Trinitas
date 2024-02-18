@@ -29,14 +29,6 @@ func _ready() -> void:
         menu.hide()
     )
 
-    # load_table_button.pressed.connect(func() -> void:
-        # load_table_popup.show()
-        # menu.hide()
-    # )
-
-    save_table_popup.save_requested.connect(save_table)
-    # load_table_popup.load_requested.connect(load_table)
-
     var background: ColorRect = $BackgroundLayer/Background
     camera._infinidots_shader = background.material as ShaderMaterial
 
@@ -51,10 +43,10 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
     if Input.is_action_just_released("move_mode_drag"):
         drag_target = null
-        
+
     if Input.is_action_just_pressed("drop_focus"):
         var focused := get_tree().root.gui_get_focus_owner()
-        
+
         if focused != null:
             focused.release_focus()
 

@@ -19,16 +19,7 @@ func _ready() -> void:
     add_child(display_timer)
 
 func animate_show() -> void:
-    if fade_in_tween and fade_in_tween.is_running():
-        fade_in_tween.stop()
-
-    if fade_out_tween and fade_out_tween.is_running():
-        fade_out_tween.stop()
-
-    if not display_timer.is_stopped():
-        display_timer.stop()
-
-    modulate = Color.TRANSPARENT
+    reset()
 
     fade_in_tween = create_tween()
     fade_in_tween.tween_property(
@@ -52,6 +43,18 @@ func warning(message: String) -> void:
 
 func error(message: String) -> void:
     display(message)
+
+func reset() -> void:
+    if fade_in_tween and fade_in_tween.is_running():
+        fade_in_tween.stop()
+
+    if fade_out_tween and fade_out_tween.is_running():
+        fade_out_tween.stop()
+
+    if not display_timer.is_stopped():
+        display_timer.stop()
+
+    modulate = Color.TRANSPARENT
 
 func _on_fade_in_tween_finished() -> void:
     display_timer.start()
