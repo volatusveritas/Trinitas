@@ -25,8 +25,8 @@ func _ready() -> void:
     var _load_table_button := $FixedLayer/Menu/Elements/Buttons/LoadTableButton as Button
 
     save_table_button.pressed.connect(func() -> void:
-        save_table_popup.show()
         menu.hide()
+        save_table_popup.show()
     )
 
     var background: ColorRect = $BackgroundLayer/Background

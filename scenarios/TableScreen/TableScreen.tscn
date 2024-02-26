@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c2mtkd1wdlf0c"]
+[gd_scene load_steps=22 format=3 uid="uid://c2mtkd1wdlf0c"]
 
 [ext_resource type="Script" path="res://scenarios/TableScreen/TableScreen.gd" id="1_oohwr"]
 [ext_resource type="Shader" path="res://shaders/infinite_bg.gdshader" id="2_7iqwt"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://dib1j7wgsgtw8" path="res://assets/img/logo.svg" id="3_1ykfl"]
 [ext_resource type="Script" path="res://scenarios/TableScreen/NewItemSelector.gd" id="3_2p4jk"]
 [ext_resource type="Script" path="res://scenarios/TableScreen/ItemStage.gd" id="3_qu43g"]
+[ext_resource type="Shader" path="res://shaders/blur.gdshader" id="8_f5ocm"]
+[ext_resource type="Script" path="res://scenarios/TableScreen/FixedLayer.gd" id="8_k4ps1"]
 [ext_resource type="FontFile" uid="uid://cakht3wf8rhg5" path="res://assets/fonts/space_mono/bold_italic.ttf" id="8_lol00"]
 [ext_resource type="Script" path="res://scenarios/TableScreen/ModeIndicator.gd" id="8_vco2a"]
 [ext_resource type="Script" path="res://scenarios/TableScreen/Menu.gd" id="11_y22qq"]
@@ -27,6 +29,10 @@ shader_parameter/bullet_color = Color(0.254902, 0.254902, 0.254902, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wig67"]
 bg_color = Color(0, 0, 0, 0.180392)
 skew = Vector2(0.25, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bvu46"]
+shader = ExtResource("8_f5ocm")
+shader_parameter/pixel_distance = 5.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8kdbs"]
 content_margin_right = 8.0
@@ -98,6 +104,7 @@ position_smoothing_speed = 8.0
 script = ExtResource("2_i4s73")
 
 [node name="FixedLayer" type="CanvasLayer" parent="."]
+script = ExtResource("8_k4ps1")
 
 [node name="ModeIndicator" type="Control" parent="FixedLayer"]
 modulate = Color(1, 1, 1, 0.901961)
@@ -138,6 +145,16 @@ theme_override_fonts/font = ExtResource("8_lol00")
 text = "Normal"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="BlurShader" type="ColorRect" parent="FixedLayer"]
+visible = false
+material = SubResource("ShaderMaterial_bvu46")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="Menu" type="Control" parent="FixedLayer"]
 visible = false
